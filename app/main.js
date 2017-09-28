@@ -21,7 +21,7 @@ function startGame() {
 
 
   // Clear board and add click events on squares
-  for (i = 0; i < spaces.length; i++) {
+  for (var i = 0; i < spaces.length; i++) {
     spaces[i].innerHTML = '';
     spaces[i].addEventListener("click", takeSpace);
   }  
@@ -34,6 +34,19 @@ function takeSpace() {
   this.innerHTML = symbols[turn % 2];
   this.removeEventListener("click", takeSpace);  
 
+  for (var i = 0; i < wins.length; i++) {
+    if (checkForWin(wins[i])) {
+      alert("Whoo hoo! Someone won!");
+    }
+  }
+
 }
 
+function checkForWin(winArray) {
+    
+  return spaces[winArray[0]] !== '' && 
+    spaces[winArray[0]] === spaces[winArray[1]] && 
+    spaces[winArray[0]] === spaces[winArray[2]];
+  
+}
 
